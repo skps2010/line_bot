@@ -1,5 +1,6 @@
 from flask import Flask, request, abort
 import os
+import random
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -39,11 +40,14 @@ def callback():
     return 'OK'
 
 
+msg = ["完全錯誤！", "也許吧", "有可能", "沒錯！", "可能是、可能不是", "我不認為", "沒有吧", "應該是", "我不知道"]
+
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text))
+        TextSendMessage(text=msg[random.randint(len(msg))]))
 
 
 if __name__ == "__main__":
