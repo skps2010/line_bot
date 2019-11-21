@@ -1,4 +1,5 @@
 from flask import Flask, request, abort
+import os
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -12,7 +13,8 @@ from linebot.models import (
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('sRbByNEreS9vEJAZtCsgmiC8lZIK8npaiAy/b8qo43pTnMJVLNRkjfo3gx9+dYeFyGtbyAkI/8lNCijh6BHB76qV5mPl40ayKAy8gaB8yI1ZxeY80oO6T+nRl/+BEXzNFGABQLdjqr0JmPOZO7+Y8QdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi(
+    'sRbByNEreS9vEJAZtCsgmiC8lZIK8npaiAy/b8qo43pTnMJVLNRkjfo3gx9+dYeFyGtbyAkI/8lNCijh6BHB76qV5mPl40ayKAy8gaB8yI1ZxeY80oO6T+nRl/+BEXzNFGABQLdjqr0JmPOZO7+Y8QdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('c8b7d4d90e16fb47555b486b1734f82b')
 
 
@@ -43,4 +45,4 @@ def handle_message(event):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=os.environ['PORT'])
